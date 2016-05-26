@@ -139,20 +139,26 @@ var app = {
 
 
         var isInited = false;
+        var isArrowShown = false;
         function initVideo2(){
             if (!isInited && video02.currentTime > 0){
                 $(".poster").hide().css({'background-image': 'url("assets/images/video03-poster.png")'});
                 isInited = true;
             }
+
+            if (!isArrowShown && video02.currentTime > 18) {
+                //  show arrow
+                $('.page-arrow').addClass('active');
+                isArrowShown = true;
+                //  bind start btn for scene03
+                $('.video02').one('touchstart', app.startScene03);
+            }
         }
 
         //  event when video02 end
-        $('.video02').one('ended', function () {
-            //  bind start btn for scene03
-            $('.video02').one('touchstart', app.startScene03);
-            //  show arrow
-            $('.page-arrow').addClass('active');
-        });
+        //$('.video02').one('ended', function () {
+        //
+        //});
     },
 
     startScene03: function () {
@@ -231,6 +237,19 @@ var app = {
                 window.setInterval(function(){countdown(new Date(2016,5-1,26, 2,0,0));}, 1000);
             });
         });
+    },
+
+    debug: function (index) {
+      switch (index) {
+          case 1:
+              $('.scene01').css({zIndex: 1000}).addClass('active');
+              break;
+          case 2:
+              break;
+          case 3:
+              $('.scene03').css({zIndex: 1000}).addClass('active');
+              break;
+      }
     },
 
     start: function (){

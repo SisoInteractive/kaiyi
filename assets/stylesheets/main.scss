@@ -125,6 +125,15 @@ $pageHeight: 1030;
     background: #fcfcfc;
     position: relative;
     top: -1px;
+
+    font-size: 100%;
+    line-height: 0;
+    vertical-align: baseline;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
   }
 
   &.active {
