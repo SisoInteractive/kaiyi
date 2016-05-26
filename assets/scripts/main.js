@@ -8,6 +8,22 @@ document.addEventListener('touchmove', function (e) {
 },true);
 
 var app = {
+    browser: {
+        versions: function(){
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {
+                webKit: u.indexOf('AppleWebKit') > -1,
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                weixin: u.indexOf('MicroMessenger') > -1,
+                txnews: u.indexOf('qqnews') > -1,
+                sinawb: u.indexOf('weibo') > -1,
+                mqq   : u.indexOf('QQ') > -1
+            };
+        }(),
+        language:(navigator.browserLanguage || navigator.language).toLowerCase()
+    },
+
     preload: function () {
         //  preload images
         var images = [
@@ -50,10 +66,10 @@ var app = {
             return loaded / amount == 1;
         }
 
-        $(window).on('load', resetVideoSize).on('resize', resetVideoSize);
+        //  event when resize
+        $(window).on('load', resizeContent).on('resize', resizeContent);
 
-        function resetVideoSize () {
-            //  init video size
+        function resizeContent () {
             var cw = document.documentElement.clientWidth;
             var ch = document.documentElement.clientHeight;
 
@@ -62,6 +78,21 @@ var app = {
             });
 
             $('body').css({"width": Math.floor((ch*0.6213592233009708))});
+        }
+
+        //  IOS exit full screen
+        if (app.browser.versions.ios){
+            $('.video01').on("playing", function (){
+                $(".video01")[0].webkitExitFullScreen();
+            }, false);
+
+            ('.video02').on("playing", function (){
+                $(".video02")[0].webkitExitFullScreen();
+            }, false);
+
+            ('.video03').on("playing", function (){
+                $(".video03")[0].webkitExitFullScreen();
+            }, false);
         }
 
         //  start button
