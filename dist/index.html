@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="apple-touch-fullscreen" content="no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <title></title>
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="assets/stylesheets/app.min.css">
+    <!-- endinject -->
+</head>
+<body>
+<!-- the class "content" is used for flexible plugin -->
+<div class="content">
+    <div class="pa loading">
+        <img class="pa loading-plain" src="assets/images/loading-img.png"/>
+        <div class="pa loading-text">loading...</div>
+    </div>
+
+    <div class="pa poster"></div>
+    <div class="pa bg"></div>
+
+    <div class="pa videobox videobox01">
+        <!--<video class="video01" data-index="1" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://ossweb-img.qq.com/images/wefire/act/a20150826kris/v2.mp4"></video>-->
+        <video class="video01" data-index="1" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="assets/images/part01.mp4" poster="assets/images/bg-paper.png"></video>
+    </div>
+
+    <div class="pa videobox videobox02">
+        <video class="video02" data-index="2" preload="auto" src="assets/images/part02.mp4" poster="assets/images/video02-poster.png"></video>
+    </div>
+
+    <div class="pa videobox videobox03">
+        <video class="video03" data-index="3" preload="auto" src="assets/images/part03.mp4"></video>
+    </div>
+
+    <!-- scene01 -->
+    <section class="pa scene scene01">
+        <div class="throw-plain">
+            <img class="pa plain" />
+
+            <div class="pa tips">
+                <img alt=""/>
+            </div>
+            <img class="pa arrow"/>
+        </div>
+    </section>
+    <!-- end scene01 -->
+
+    <!-- scene03 -->
+    <section class="pa scene scene03">
+        <input class="pa name" type="text"/>
+        <input class="pa phone" type="number"/>
+        <span class="pa submit"></span>
+    </section>
+    <!-- end scene03 -->
+</div>
+
+<audio id="audio" src="assets/images/audio.mp3" loop></audio>
+<!-- inject:js -->
+<script src="assets/scripts/app.min.js"></script>
+<!-- endinject -->
+</body>
+</html>

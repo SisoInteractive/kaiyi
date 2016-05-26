@@ -1,0 +1,290 @@
+// Created by sam mok 2015(Siso brand interactive team).
+
+/*======================================================================
+      Global
+  ======================================================================*/
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+html {
+  height: 100%;
+  font-family: "microsoft yahei", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0  auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+p, a, button, span {
+  -webkit-font-smoothing: antialiased;
+}
+
+input {
+  outline: none;
+}
+
+.pa { position: absolute; }
+
+$pageWidth: 640;
+$pageHeight: 1030;
+
+@mixin calWidth ($value) {
+  width: $value / $pageWidth * 100%;
+}
+
+@mixin calHeight ($value) {
+  height: $value / $pageHeight * 100%;
+}
+
+@mixin calTop ($value) {
+  top: $value / $pageHeight * 100%;
+}
+
+@mixin calBottom ($value) {
+  bottom: $value / $pageHeight * 100%;
+}
+
+@mixin calLeft ($value) {
+  left: $value / $pageWidth * 100%;
+}
+
+@mixin calRight ($value) {
+  right: $value / $pageWidth * 100%;
+}
+
+@mixin fullScreen () {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+body {
+  background: #fcfcfc no-repeat 50% 50%;
+  background-size: cover;
+}
+
+/* the class "content" is used for flexible plugin */
+.content{
+  position: relative;
+  overflow: hidden;
+}
+
+// loading
+.loading {
+  @include fullScreen();
+  transition: all .6s;
+  z-index: 100;
+
+  &.leave {
+    opacity: 0;
+  }
+}
+
+.loading-plain {
+  @include calTop(300);
+  @include calLeft(225);
+  @include calWidth(190);
+}
+
+.loading-text {
+  @include calTop(480);
+  left: 0;
+  right: 0;
+  font-size: 9px;
+  color: #666;
+  text-align: center;
+}
+
+.videobox {
+  z-index: 8;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  overflow: hidden;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  video {
+    width: 100%;
+    height: 100%;
+    background: #fcfcfc;
+    position: relative;
+    top: -1px;
+  }
+
+  &.active {
+    display: block;
+  }
+}
+
+//  video01
+.videobox01 {
+  transition: all .9s;
+
+  &.leave {
+    opacity: 0;
+  }
+}
+
+//  video02
+.videobox02 {
+  transition: all .9s;
+
+  &.leave {
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.poster {
+  display: none;
+  z-index:99;
+  @include fullScreen();
+  width:100%;
+  background: url("../images/bg-paper.png") no-repeat 50% 50%;
+  background-size: cover;
+
+  &.show {
+    display: block;
+  }
+}
+
+// scene
+.scene {
+  @include fullScreen();
+}
+
+.bg {
+  display: none;
+  @include fullScreen();
+  background: 50% 50%;
+  background-size: cover;
+
+  &.active {
+    display: block;
+  }
+}
+
+// scene01
+.scene01 {
+  opacity: 0;
+  transition: all .9s;
+
+  &.prepare {
+    z-index: 100;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  .throw-plain {
+    .plain {
+      @include calWidth(372);
+      bottom: 0;
+      right: 0;
+      animation: throwPlain 4s infinite;
+    }
+
+    .tips {
+      @include calWidth(125);
+      @include calBottom(428);
+      @include calLeft(270);
+      overflow: hidden;
+      background: rgba(217, 223, 232, .4);
+      border: 8px solid rgba(236, 239, 244, .4);
+      border-radius: 100%;
+      z-index: 10;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .arrow {
+      @include calWidth(130);
+      @include calRight(56);
+      @include calBottom(240);
+      z-index: 10;
+    }
+  }
+}
+
+//  scene03
+.scene03 {
+  display: none;
+  background: url("../images/bg-scene03.jpg") no-repeat center center;
+  background-size: cover;
+  transition: all .9s;
+
+  .name {
+    @include calWidth(184);
+    @include calHeight(45);
+    @include calTop(280);
+    @include calLeft(272);
+    text-indent: .5em;
+    font-size: 12px;
+    background: none;
+    border: none;
+  }
+
+  .phone {
+    @include calWidth(184);
+    @include calHeight(45);
+    @include calTop(327);
+    @include calLeft(272);
+    text-indent: .5em;
+    font-size: 12px;
+    background: none;
+    border: none;
+  }
+
+  .submit {
+    @include calWidth(170);
+    @include calHeight(170);
+    @include calTop(740);
+    @include calLeft(235);
+  }
+
+  &.active {
+    display: block;
+  }
+
+  &.leave {
+    opacity: 0;
+  }
+}
+
+// Animation
+@keyframes throwPlain {
+  40% {
+    transform: translate3d(20px, 20px, 0);
+  }
+}
+
+@keyframes throwPlainArrow {
+  50% {
+    transform: translate3d(20px, 20px, 0);
+  }
+}
+
+
+
+
+
