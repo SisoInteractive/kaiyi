@@ -29,9 +29,8 @@ var app = {
     preload: function () {
         //  preload images
         var images = [
-            'bg-paper.png',
+            'bg-paper.jpg',
             'bg-scene01.jpg',
-            'bg-scene03.jpg',
             'bg-countdown.jpg',
             'video02-poster.png',
             'video03-poster.png',
@@ -51,13 +50,19 @@ var app = {
                 //  check process
                 loaded++;
                 if (checkProcess()) {
-                    $('.loading-text .counter').text('点击小飞机');
-                    $('.loading-text .status').text('Finished');
-                    startProcess();
+                    prestartProcess();
+
+                    //  init another
                     $('.bg').css({'background-image': 'url("assets/images/bg-scene01.jpg")'});
                     $('.scene01 .plain').attr('src', 'assets/images/scene01-throw-plan.png');
-                    $('.scene01 .tips img').attr('src', 'assets/images/scene01-tips.png');
                     $('.scene01 .arrow').attr('src', 'assets/images/scene01-arrow.png');
+                    $('.scene03').css({backgroundImage: 'url("assets/images/bg-scene03' + (app.version=="reporter"? "-reporter": "") + '.jpg")'});
+                    if (app.browser.versions.ios) {
+                        $('.throw-plain .tips img').attr('src', 'assets/images/scene01-tips.png');
+                    } else {
+                        $('.throw-plain .tips img').attr('src', 'assets/images/scene01-tips-android.png');
+                        $('.video02').one('touchstart', app.startScene03);
+                    }
                 }
             }
 
@@ -83,7 +88,10 @@ var app = {
         }
 
         //  start button
-        function startProcess () {
+        function prestartProcess () {
+            $('.loading-text .counter').text('点击小飞机');
+            $('.loading-text .status').text('Finished');
+
             $('.loading-plain').one('touchstart', function () {
 
                 //  init video01
@@ -128,8 +136,35 @@ var app = {
                 $('.videobox01').remove();
                 $('.scene01').addClass('active');
 
-                // bind start btn for scene02
-                $('.tips').one('touchstart', app.startScene02);
+
+                //  if ios, shake device to throw plain,
+                //  other os, click button to throw plain
+                if (app.browser.versions.ios) {
+                    var myShakeEvent = new Shake({
+                        threshold: 7, // optional shake strength threshold
+                        timeout: 700 // optional, determines the frequency of event generation
+                    });
+                    myShakeEvent.start();
+
+                    window.addEventListener('shake', shakeHandler, false);
+
+                    function shakeHandler () {
+                        !app.isStartScene02 && app.startScene02();
+                        app.isStartScene02 = true;
+                        window.removeEventListener('shake', shakeHandler, false);
+                    }
+
+                    $('.throw-plain').one('touchstart', function () {
+                        !app.isStartScene02 && app.startScene02();
+                        app.isStartScene02 = true;
+                    });
+                } else {
+                    // bind start btn for scene02
+                    $('.throw-plain').one('touchstart', function () {
+                        !app.isStartScene02 && app.startScene02();
+                        app.isStartScene02 = true;
+                    });
+                }
             }, 900)
         });
 
@@ -137,12 +172,14 @@ var app = {
         $('.loading').remove();
     },
 
+    isStartScene02: false,
+
     startScene02: function () {
         //  init video02
+        $('.poster').show();
         $('.videobox02').addClass('active');
         var video02 = $('.video02')[0];
         video02.addEventListener("timeupdate", initVideo2, false);
-        $('.poster').show();
         $('.scene01').remove();
         //video02.playbackRate = 4;
         video02.play();
@@ -164,15 +201,11 @@ var app = {
                 //  show arrow
                 $('.page-arrow').addClass('active');
                 isArrowShown = true;
+
                 //  bind start btn for scene03
-                $('.video02').one('touchstart', app.startScene03);
+                $('.videobox02').one('touchstart', app.startScene03);
             }
         }
-
-        //  event when video02 end
-        //$('.video02').one('ended', function () {
-        //
-        //});
     },
 
     startScene03: function () {
@@ -191,33 +224,35 @@ var app = {
         var widthRate = $('body')[0].clientWidth / 375;
 
         if (app.version == "reporter") {
-            $('.message').css({
-                width: 470/2 * widthRate + 'px',
-                height: 175/2 * heightRate + 'px',
+            $('.message').show().css({
+                width: 522/2 * widthRate + 'px',
+                height: 195/2 * heightRate + 'px',
                 lineHeight: 42/2 * heightRate + 'px',
-                fontSize: 32/2 * heightRate + 'px',
-                marginTop: 257/2 * heightRate + 'px',
-                marginLeft: 133/2 * widthRate + 'px'
+                fontSize: 28/2 * heightRate + 'px',
+                marginTop: 255/2 * heightRate + 'px',
+                marginLeft: 112/2 * widthRate + 'px'
             });
 
             $('.name').css({
-                width: 244/2 * widthRate + 'px',
-                height: 42/2 * heightRate + 'px',
-                lineHeight: 42/2 * heightRate + 'px',
+                width: 260/2 * widthRate + 'px',
+                height: 87/2 * heightRate + 'px',
+                lineHeight: 87/2 * heightRate + 'px',
                 fontSize: 28/2 * heightRate + 'px',
-                marginTop: 107/2 * heightRate + 'px',
-                marginLeft: 300/2 * widthRate + 'px'
+                marginTop: 90/2 * heightRate + 'px',
+                marginLeft: 315/2 * widthRate + 'px'
             });
 
             $('.phone').css({
                 width: 244/2 * widthRate + 'px',
-                height: 42/2 * heightRate + 'px',
-                lineHeight: 42/2 * heightRate + 'px',
+                height: 87/2 * heightRate + 'px',
+                lineHeight: 87/2 * heightRate + 'px',
                 fontSize: 28/2 * heightRate + 'px',
-                marginLeft: 300/2 * widthRate + 'px'
+                marginLeft: 315/2 * widthRate + 'px'
             });
 
-        } else if (app.version == "person") {
+        }
+        //  TODO: needs to rewrite below UI position
+        else if (app.version == "person") {
             $('.name').css({
                 width: 244/2 * widthRate + 'px',
                 height: 42/2 * heightRate + 'px',
@@ -262,14 +297,30 @@ var app = {
 
             //  TODO: send data to server
             //
+            if (app.version == 'reporter') {
+                $.post('http://localhost:1361/reporter', {
+                    message: $('.message').val() || '',
+                    name: $('.name').val() || '',
+                    phone: $('.phone').val() || ''
+                }, function (response) {
+                    console.log('data send:', response);
+                });
+            } else {
+                $.post('http://localhost:1361/person', {
+                    name: $('.name').val() || '',
+                    phone: $('.phone').val() || ''
+                }, function (response) {
+                    console.log('data send:', response);
+                });
+            }
 
             //  init video03
             $('.scene03').addClass('leave');
+            $('.bg').css({'background-image': 'url("assets/images/video03-poster.png")'});
+            $('.poster').show();
             $('.videobox03').addClass('active');
             var video03 = $('.video03')[0];
             video03.addEventListener("timeupdate", initVideo3, false);
-            $('.bg').css({'background-image': 'url("assets/images/video03-poster.png")'});
-            $('.poster').show();
             video03.play();
 
             function initVideo3(){
@@ -283,7 +334,7 @@ var app = {
                     setTimeout(function () {
                         $('.videobox02, .scene03').remove();
                         $('.video03')[0].play();
-                    }, 100)
+                    }, 900)
                 }
             }
 
@@ -297,7 +348,6 @@ var app = {
                 var minus = $('.minus');
                 var seconds = $('.seconds');
 
-                //  init counter ui
                 var heightRate = $('body')[0].clientHeight / 603;
                 var widthRate = $('body')[0].clientWidth / 375;
                 $('.counter span').css({
@@ -313,12 +363,11 @@ var app = {
                 minus.css({left: (380/2 * widthRate + 'px')});
                 seconds.css({left: (477/2 * widthRate + 'px')});
 
-                //  run countdown
                 // new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);
-                window.setInterval(function(){countdown(new Date(2016,5-1,26, 2,0,0));}, 1000);
+                countdown(new Date(2016,5-1,30, 2,0,0), day, hours, minus, seconds);
+                window.setInterval(function(){countdown(new Date(2016,5-1,30, 2,0,0), day, hours, minus, seconds);}, 1000);
 
-                function countdown(endDate)
-                {
+                function countdown(endDate, date, hours, minus, seconds) {
                     var now = new Date();
                     var leftTime = endDate.getTime()-now.getTime();
                     var leftsecond = parseInt(leftTime/1000);
@@ -326,7 +375,10 @@ var app = {
                     var hour = Math.floor((leftsecond-day*24*60*60)/3600);
                     var minute = Math.floor((leftsecond-day*24*60*60-hour*3600)/60);
                     var second = Math.floor(leftsecond-day*24*60*60-hour*3600-minute*60);
-                    console.log("还有："+day+"天"+hour+"小时"+minute+"分"+second+"秒");
+                    date.text(day);
+                    hours.text(hour);
+                    minus.text(minute);
+                    seconds.text(second);
                 }
             });
         });
@@ -408,6 +460,4 @@ $(function (){
     app.start();
     //app.debug('counter');
     console.log('app started success...');
-
-
 });

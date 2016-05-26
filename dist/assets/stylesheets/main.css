@@ -50,7 +50,7 @@ input {
   position: absolute;
   overflow: hidden;
   top: 0;
-  background: url("../images/bg-paper.png") no-repeat center center;
+  background: url("../images/bg-paper.jpg") no-repeat center center;
   background-size: cover;
 }
 
@@ -132,6 +132,7 @@ input {
 }
 
 .videobox02 {
+  z-index: 20;
   -webkit-transition: all .9s;
           transition: all .9s;
 }
@@ -148,7 +149,7 @@ input {
   bottom: 0;
   top: 0;
   width: 100%;
-  background: url("../images/bg-paper.png") no-repeat 50% 50%;
+  background: url("../images/bg-paper.jpg") no-repeat 50% 50%;
   background-size: cover;
 }
 .poster.show {
@@ -199,6 +200,7 @@ input {
   right: 0;
   bottom: 0;
   top: 0;
+  z-index: 10;
 }
 
 .bg {
@@ -224,6 +226,10 @@ input {
 }
 .scene01.active {
   opacity: 1;
+}
+.scene01 .throw-plain {
+  width: 100%;
+  height: 100%;
 }
 .scene01 .throw-plain .plain {
   width: 58.125%;
@@ -251,31 +257,36 @@ input {
 .scene01 .throw-plain .arrow {
   width: 20.3125%;
   right: 8.75%;
-  bottom: 23.30097%;
+  bottom: 36%;
   z-index: 10;
-  -webkit-animation: push 1.2s infinite linear;
-          animation: push 1.2s infinite linear;
+  -webkit-animation: push 4s infinite linear;
+          animation: push 4s infinite linear;
 }
 
 .scene03 {
   display: none;
-  background: url("../images/bg-scene03-reporter.jpg") no-repeat center center;
+  background: no-repeat center center;
   background-size: cover;
   -webkit-transition: all .9s;
           transition: all .9s;
 }
 .scene03 .name {
+  color: #393156;
   background: none;
   border: none;
 }
 .scene03 .phone {
+  color: #393156;
   background: none;
   border: none;
 }
 .scene03 .message {
+  display: none;
   line-height: 1.6em;
-  border: none;
+  padding: 5px;
+  color: #393156;
   background: none;
+  border: none;
 }
 .scene03 .submit {
   width: 26.5625%;
@@ -287,7 +298,14 @@ input {
   display: block;
 }
 .scene03.leave {
-  opacity: 0;
+  -webkit-transform: translate3d(0, -100%, 0);
+          transform: translate3d(0, -100%, 0);
+}
+.scene03.reporter {
+  background-image: url("../images/bg-scene03-reporter.jpg");
+}
+.scene03.person {
+  background-image: url("../images/bg-scene03.jpg");
 }
 
 .counter {
@@ -374,14 +392,14 @@ input {
 }
 @-webkit-keyframes throwPlainArrow {
   50% {
-    -webkit-transform: translate3d(20px, 20px, 0);
-            transform: translate3d(20px, 20px, 0);
+    -webkit-transform: translate3d(20px, 10px, 0);
+            transform: translate3d(20px, 10px, 0);
   }
 }
 @keyframes throwPlainArrow {
   50% {
-    -webkit-transform: translate3d(20px, 20px, 0);
-            transform: translate3d(20px, 20px, 0);
+    -webkit-transform: translate3d(20px, 10px, 0);
+            transform: translate3d(20px, 10px, 0);
   }
 }
 @-webkit-keyframes push {

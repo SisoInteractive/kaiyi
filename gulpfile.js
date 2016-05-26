@@ -45,8 +45,8 @@ var concatOrder = {
     ],
 
     js: [
-        filePath.js + 'pageResponse.js',
         filePath.js + 'zepto.js',
+        filePath.js + 'shake.js',
         filePath.js + 'main.js'
     ]
 };
