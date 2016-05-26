@@ -295,10 +295,9 @@ var app = {
                 return;
             }
 
-            //  TODO: send data to server
-            //
+            //  send data to server
             if (app.version == 'reporter') {
-                $.post('http://localhost:1361/reporter', {
+                $.post('http://sisobrand.com:1361/reporter', {
                     message: $('.message').val() || '',
                     name: $('.name').val() || '',
                     phone: $('.phone').val() || ''
@@ -306,7 +305,7 @@ var app = {
                     console.log('data send:', response);
                 });
             } else {
-                $.post('http://localhost:1361/person', {
+                $.post('http://sisobrand.com:1361/person', {
                     name: $('.name').val() || '',
                     phone: $('.phone').val() || ''
                 }, function (response) {

@@ -16,7 +16,7 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0  auto;
-  background: #fcfcfc;
+  background: #f3f3f3;
   position: absolute;
   left: 50%;
   -webkit-transform: translate3d(-50%, 0, 0);
