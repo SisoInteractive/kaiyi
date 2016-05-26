@@ -1707,8 +1707,9 @@ var app = {
                 //  check process
                 loaded++;
                 if (checkProcess()) {
-                    start();
-                    $('.bg').css({'background-image': 'url("assets/images/bg-scene01.jpg")'});
+                    $('.loading-text .counter').text('点击小飞机');
+                    $('.loading-text .status').text('Finished');
+                    startProcess();
                     $('.scene01 .plain').attr('src', 'assets/images/scene01-throw-plan.png');
                     $('.scene01 .tips img').attr('src', 'assets/images/scene01-tips.png');
                     $('.scene01 .arrow').attr('src', 'assets/images/scene01-arrow.png');
@@ -1718,12 +1719,12 @@ var app = {
         });
 
         function checkProcess () {
-            $('.loading-text').text(Math.floor(loaded / amount * 100) + '%');
+            $('.loading-text  .counter').text(Math.floor(loaded / amount * 100) + '%');
             return loaded / amount == 1;
         }
 
         //  start button
-        function start () {
+        function startProcess () {
             $('.loading-plain').one('touchstart', function () {
                 $('.loading').addClass('leave');
 
@@ -1824,6 +1825,7 @@ var app = {
     startScene03: function () {
         $('.videobox02').addClass('leave');
         $('.scene03').addClass('active');
+        $('.page-arrow').removeClass('active');
 
         setTimeout(function () {
             $('.videobox02').remove();

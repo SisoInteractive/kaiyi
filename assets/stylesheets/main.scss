@@ -18,6 +18,8 @@ body {
   height: 100%;
   overflow: hidden;
   margin: 0  auto;
+  background: #fcfcfc url("../images/bg-paper.png") no-repeat center center;
+  background-size: cover;
 }
 
 a {
@@ -72,11 +74,6 @@ $pageHeight: 1030;
   top: 0;
 }
 
-body {
-  background: #fcfcfc no-repeat 50% 50%;
-  background-size: cover;
-}
-
 /* the class "content" is used for flexible plugin */
 .content{
   position: relative;
@@ -98,6 +95,7 @@ body {
   @include calTop(300);
   @include calLeft(225);
   @include calWidth(190);
+  animation: throwPlainSmall 4s infinite linear;
 }
 
 .loading-text {
@@ -105,6 +103,7 @@ body {
   left: 0;
   right: 0;
   font-size: 9px;
+  line-height: 1.45em;
   color: #666;
   text-align: center;
 }
@@ -161,6 +160,48 @@ body {
 
   &.show {
     display: block;
+  }
+}
+
+/* arrow */
+.page-arrow {
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  left: 0;
+  right: 0;
+  bottom: 7.5%;
+  margin: 0 auto;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  z-index: 10000;
+  opacity: 0;
+
+  &.active {
+    -webkit-animation: nextPage 1.2s linear infinite;
+  }
+}
+
+.page-arrow-below {
+  bottom: 6%;
+
+  &.active {
+    -webkit-animation: nextPage 1.2s .2s linear infinite;
+  }
+}
+
+@-webkit-keyframes nextPage {
+  0% {
+    -webkit-transform: translateY(40px) rotate(-45deg);
+    opacity: 0.8;
+  }
+  50% {
+    -webkit-transform: translateY(20px) rotate(-45deg);
+    opacity: 0.4;
+  }
+  100% {
+    -webkit-transform: translateY(10px) rotate(-45deg);
+    opacity: 0;
   }
 }
 
@@ -275,6 +316,12 @@ body {
 @keyframes throwPlain {
   40% {
     transform: translate3d(20px, 20px, 0);
+  }
+}
+
+@keyframes throwPlainSmall {
+  100% {
+    transform: rotate(-360deg);
   }
 }
 

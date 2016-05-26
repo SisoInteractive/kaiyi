@@ -12,29 +12,34 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="assets/stylesheets/app.min.css">
     <!-- endinject -->
+
+    <!-- weixin share thumb -->
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+        <img src='assets/images/share-icon.jpg' />
+    </div>
+    <!-- end weixin share thumb -->
 </head>
 <body>
 <!-- the class "content" is used for flexible plugin -->
 <div class="content">
     <div class="pa loading">
         <img class="pa loading-plain" src="assets/images/loading-img.png"/>
-        <div class="pa loading-text">loading...</div>
+        <div class="pa loading-text"><span class="counter"></span><br/><span class="status">Loading...</span></div>
     </div>
 
     <div class="pa poster"></div>
     <div class="pa bg"></div>
 
     <div class="pa videobox videobox01">
-        <!--<video class="video01" data-index="1" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://ossweb-img.qq.com/images/wefire/act/a20150826kris/v2.mp4"></video>-->
-        <video class="video01" data-index="1" x-webkit-airplay="true" webkit-playsinline="true" preload="auto" src="http://7xp6iq.com1.z0.glb.clouddn.com/part01.mp4" poster="assets/images/bg-paper.png"></video>
+        <video class="video01" data-index="1" x-webkit-airplay="true" webkit-playsinline="true" src="http://7xp6iq.com1.z0.glb.clouddn.com/part01.mp4" poster="assets/images/bg-paper.png"></video>
     </div>
 
     <div class="pa videobox videobox02">
-        <video class="video02" data-index="2" preload="auto" src="http://7xp6iq.com1.z0.glb.clouddn.com/part02.mp4" poster="assets/images/video02-poster.png"></video>
+        <video class="video02" data-index="2" src="http://7xp6iq.com1.z0.glb.clouddn.com/part02.mp4" poster="assets/images/video02-poster.png"></video>
     </div>
 
     <div class="pa videobox videobox03">
-        <video class="video03" data-index="3" preload="auto" src="http://7xp6iq.com1.z0.glb.clouddn.com/part03.mp4"></video>
+        <video class="video03" data-index="3" src="http://7xp6iq.com1.z0.glb.clouddn.com/part03.mp4"></video>
     </div>
 
     <!-- scene01 -->
@@ -58,6 +63,9 @@
     </section>
     <!-- end scene03 -->
 </div>
+
+<div class="page-arrow"></div>
+<div class="page-arrow page-arrow-below"></div>
 
 <audio id="audio" src="assets/images/audio.mp3" loop></audio>
 <!-- inject:js -->
