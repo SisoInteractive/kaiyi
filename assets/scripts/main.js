@@ -8,6 +8,8 @@ document.addEventListener('touchmove', function (e) {
 },true);
 
 var app = {
+    version: 'reporter',
+
     browser: {
         versions: function(){
             var u = navigator.userAgent, app = navigator.appVersion;
@@ -80,21 +82,6 @@ var app = {
             $('body').css({"width": Math.floor((ch*0.6213592233009708))});
         }
 
-        //  IOS exit full screen
-        if (app.browser.versions.ios){
-            $('.video01').on("playing", function (){
-                $(".video01")[0].webkitExitFullScreen();
-            }, false);
-
-            $('.video02').on("playing", function (){
-                $(".video02")[0].webkitExitFullScreen();
-            }, false);
-
-            $('.video03').on("playing", function (){
-                $(".video03")[0].webkitExitFullScreen();
-            }, false);
-        }
-
         //  start button
         function startProcess () {
             $('.loading-plain').one('touchstart', function () {
@@ -120,7 +107,7 @@ var app = {
                         setTimeout(function () {
                             $('.loading').remove();
                             app.create();
-                        }, 700);
+                        }, 900);
                     }
                 }
             });
@@ -151,13 +138,12 @@ var app = {
     },
 
     startScene02: function () {
-        $('.scene01').remove();
-
         //  init video02
         $('.videobox02').addClass('active');
         var video02 = $('.video02')[0];
         video02.addEventListener("timeupdate", initVideo2, false);
         $('.poster').show();
+        $('.scene01').remove();
         //video02.playbackRate = 4;
         video02.play();
 
@@ -199,6 +185,65 @@ var app = {
         setTimeout(function () {
             $('.videobox02').remove();
         }, 900);
+
+        //  init form
+        var heightRate = $('body')[0].clientHeight / 603;
+        var widthRate = $('body')[0].clientWidth / 375;
+
+        if (app.version == "reporter") {
+            $('.message').css({
+                width: 470/2 * widthRate + 'px',
+                height: 175/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 32/2 * heightRate + 'px',
+                marginTop: 257/2 * heightRate + 'px',
+                marginLeft: 133/2 * widthRate + 'px'
+            });
+
+            $('.name').css({
+                width: 244/2 * widthRate + 'px',
+                height: 42/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 28/2 * heightRate + 'px',
+                marginTop: 107/2 * heightRate + 'px',
+                marginLeft: 300/2 * widthRate + 'px'
+            });
+
+            $('.phone').css({
+                width: 244/2 * widthRate + 'px',
+                height: 42/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 28/2 * heightRate + 'px',
+                marginLeft: 300/2 * widthRate + 'px'
+            });
+
+        } else if (app.version == "person") {
+            $('.name').css({
+                width: 244/2 * widthRate + 'px',
+                height: 42/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 28/2 * heightRate + 'px',
+                marginTop: 107/2 * heightRate + 'px',
+                marginLeft: 300/2 * widthRate + 'px'
+            });
+
+            $('.phone').css({
+                width: 244/2 * widthRate + 'px',
+                height: 42/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 28/2 * heightRate + 'px',
+                marginLeft: 300/2 * widthRate + 'px'
+            });
+        }
+
+        $('.submit').css({
+            width: 255/2 * widthRate + 'px',
+            height: 255/2 * heightRate + 'px',
+            lineHeight: 42/2 * heightRate + 'px',
+            fontSize: 28/2 * heightRate + 'px',
+            bottom: 118/2 * heightRate + 'px',
+            left: 227/2 * widthRate + 'px'
+        });
 
         $('.submit').on('touchstart', function () {
             //  verify data
@@ -245,6 +290,32 @@ var app = {
             //  event when video02 end
             $('.video03').one('ended', function () {
                 $('.videobox03').remove();
+                $('.counter').addClass('active');
+
+                var day = $('.day');
+                var hours = $('.hours');
+                var minus = $('.minus');
+                var seconds = $('.seconds');
+
+                //  init counter ui
+                var heightRate = $('body')[0].clientHeight / 603;
+                var widthRate = $('body')[0].clientWidth / 375;
+                $('.counter span').css({
+                    'top': (261 * heightRate + 'px'),
+                    fontSize: (35/2 * heightRate + 'px'),
+                    left: (185/2 * widthRate + 'px'),
+                    width: (58/2 * widthRate + 'px'),
+                    height: (58/2 * heightRate + 'px'),
+                    lineHeight: (54/2 * heightRate + 'px')
+                });
+
+                hours.css({left: (282/2 * widthRate + 'px')});
+                minus.css({left: (380/2 * widthRate + 'px')});
+                seconds.css({left: (477/2 * widthRate + 'px')});
+
+                //  run countdown
+                // new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);
+                window.setInterval(function(){countdown(new Date(2016,5-1,26, 2,0,0));}, 1000);
 
                 function countdown(endDate)
                 {
@@ -257,9 +328,6 @@ var app = {
                     var second = Math.floor(leftsecond-day*24*60*60-hour*3600-minute*60);
                     console.log("还有："+day+"天"+hour+"小时"+minute+"分"+second+"秒");
                 }
-
-                // new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);
-                window.setInterval(function(){countdown(new Date(2016,5-1,26, 2,0,0));}, 1000);
             });
         });
     },
@@ -276,7 +344,57 @@ var app = {
               break;
           case 'video01':
               $('.videobox01').addClass('active').css({zIndex: 10000});
+              break;
+          case 'counter':
+              var cw = document.documentElement.clientWidth;
+              var ch = document.documentElement.clientHeight;
+
+              $('.videobox video').each(function () {
+                  $(this).css({minHeight: ch, maxHeight: ch});
+              });
+
+              $('body').css({"width": Math.floor((ch*0.6213592233009708))});
+
+              $('.counter').css({'background-image': 'url("assets/images/bg-countdown.jpg")'});
+              var day = $('.day');
+              var hours = $('.hours');
+              var minus = $('.minus');
+              var seconds = $('.seconds');
+
+              var heightRate = $('body')[0].clientHeight / 603;
+              var widthRate = $('body')[0].clientWidth / 375;
+              $('.counter span').css({
+                  'top': (261 * heightRate + 'px'),
+                  fontSize: (35/2 * heightRate + 'px'),
+                  left: (185/2 * widthRate + 'px'),
+                  width: (58/2 * widthRate + 'px'),
+                  height: (58/2 * heightRate + 'px'),
+                  lineHeight: (54/2 * heightRate + 'px')
+              });
+
+              hours.css({left: (282/2 * widthRate + 'px')});
+              minus.css({left: (380/2 * widthRate + 'px')});
+              seconds.css({left: (477/2 * widthRate + 'px')});
+
+              // new Date(year, month[, day[, hour[, minutes[, seconds[, milliseconds]]]]]);
+              window.setInterval(function(){countdown(new Date(2016,5-1,30, 2,0,0), day, hours, minus, seconds);}, 1000);
+              break;
       }
+
+        function countdown(endDate, date, hours, minus, seconds)
+        {
+            var now = new Date();
+            var leftTime = endDate.getTime()-now.getTime();
+            var leftsecond = parseInt(leftTime/1000);
+            var day = Math.floor(leftsecond/(60*60*24));
+            var hour = Math.floor((leftsecond-day*24*60*60)/3600);
+            var minute = Math.floor((leftsecond-day*24*60*60-hour*3600)/60);
+            var second = Math.floor(leftsecond-day*24*60*60-hour*3600-minute*60);
+            date.text(day);
+            hours.text(hour);
+            minus.text(minute);
+            seconds.text(second);
+        }
     },
 
     start: function (){
@@ -288,6 +406,8 @@ var app = {
 $(function (){
     // init app
     app.start();
-    //app.debug('video01');
+    //app.debug('counter');
     console.log('app started success...');
+
+
 });

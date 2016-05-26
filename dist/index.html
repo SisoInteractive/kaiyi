@@ -48,11 +48,11 @@
     </div>
 
     <div class="pa videobox videobox02">
-        <video class="video02" data-index="2" src="http://7xp6iq.com1.z0.glb.clouddn.com/part02.mp4" poster="assets/images/video02-poster.png"></video>
+        <video class="video02" data-index="2" x-webkit-airplay="true" webkit-playsinline="true" src="http://7xp6iq.com1.z0.glb.clouddn.com/part02.mp4" poster="assets/images/video02-poster.png"></video>
     </div>
 
     <div class="pa videobox videobox03">
-        <video class="video03" data-index="3" src="http://7xp6iq.com1.z0.glb.clouddn.com/part03.mp4"></video>
+        <video class="video03" data-index="3" x-webkit-airplay="true" webkit-playsinline="true" src="http://7xp6iq.com1.z0.glb.clouddn.com/part03.mp4"></video>
     </div>
 
     <!-- scene01 -->
@@ -70,11 +70,20 @@
 
     <!-- scene03 -->
     <section class="pa scene scene03">
-        <input class="pa name" type="text"/>
-        <input class="pa phone" type="number"/>
+        <textarea class="message"></textarea>
+        <input class="name" type="text"/>
+        <input class="phone" type="number"/>
         <span class="pa submit"></span>
     </section>
     <!-- end scene03 -->
+
+    <!-- counter -->
+    <div class="pa counter">
+        <span class="pa day"></span>
+        <span class="pa hours"></span>
+        <span class="pa minus"></span>
+        <span class="pa seconds"></span>
+    </div>
 </div>
 
 <div class="page-arrow"></div>

@@ -273,12 +273,11 @@ $pageHeight: 1030;
       border: 8px solid rgba(236, 239, 244, .2);
       border-radius: 100%;
       z-index: 10;
+      animation: pulse 1s infinite linear;
 
       img {
         display: block;
         width: 100%;
-
-        animation: flash 2s infinite linear;
       }
     }
 
@@ -287,37 +286,78 @@ $pageHeight: 1030;
       @include calRight(56);
       @include calBottom(240);
       z-index: 10;
+      animation: push 1.2s infinite linear;
     }
   }
 }
 
 //  scene03
+//.scene03 {
+//  display: none;
+//  background: url("../images/bg-scene03.jpg") no-repeat center center;
+//  background-size: cover;
+//  transition: all .9s;
+//
+//  .name {
+//    @include calWidth(184);
+//    @include calHeight(45);
+//    @include calTop(280);
+//    @include calLeft(272);
+//    text-indent: .5em;
+//    font-size: 12px;
+//    background: none;
+//    border: none;
+//  }
+//
+//  .phone {
+//    @include calWidth(184);
+//    @include calHeight(45);
+//    @include calTop(327);
+//    @include calLeft(272);
+//    text-indent: .5em;
+//    font-size: 12px;
+//    background: none;
+//    border: none;
+//  }
+//
+//  .submit {
+//    @include calWidth(170);
+//    @include calHeight(170);
+//    @include calTop(740);
+//    @include calLeft(235);
+//  }
+//
+//  &.active {
+//    display: block;
+//  }
+//
+//  &.leave {
+//    opacity: 0;
+//  }
+//}
+
+
+//  for reporter
 .scene03 {
   display: none;
-  background: url("../images/bg-scene03.jpg") no-repeat center center;
+  background: url("../images/bg-scene03-reporter.jpg") no-repeat center center;
   background-size: cover;
   transition: all .9s;
 
   .name {
-    @include calWidth(184);
-    @include calHeight(45);
-    @include calTop(280);
-    @include calLeft(272);
-    text-indent: .5em;
-    font-size: 12px;
     background: none;
     border: none;
   }
 
   .phone {
-    @include calWidth(184);
-    @include calHeight(45);
-    @include calTop(327);
-    @include calLeft(272);
-    text-indent: .5em;
-    font-size: 12px;
     background: none;
     border: none;
+  }
+
+  .message {
+    line-height: 1.6em;
+    border: none;
+    background: none;
   }
 
   .submit {
@@ -336,13 +376,57 @@ $pageHeight: 1030;
   }
 }
 
-@keyframes flash {
-  50% {
-    opacity: .85;
+//  counter
+.counter {
+  @include fullScreen();
+  background: no-repeat center center;
+  background-size: cover;
+
+  span {
+    color: #7a6653;
+    height: 26px;
+    text-align: center;
+  }
+
+  .day {
+    font-weight: bold;
+  }
+
+  .hours {
+    font-weight: bold;
+  }
+
+  .minus {
+    font-weight: bold;
+  }
+
+  .seconds {
+    font-weight: bold;
+  }
+
+  &.active {
+    z-index: 1000;
   }
 }
 
 // Animation
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 @keyframes throwPlain {
   40% {
     transform: translate3d(20px, 20px, 0);
@@ -361,6 +445,11 @@ $pageHeight: 1030;
   }
 }
 
+@keyframes push {
+  35% {
+    transform: translate3d(-20px, -20px, 0);
+  }
+}
 
 
 
