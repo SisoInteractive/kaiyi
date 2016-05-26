@@ -1710,6 +1710,7 @@ var app = {
                     $('.loading-text .counter').text('点击小飞机');
                     $('.loading-text .status').text('Finished');
                     startProcess();
+                    $('.bg').css({'background-image': 'url("assets/images/bg-scene01.jpg")'});
                     $('.scene01 .plain').attr('src', 'assets/images/scene01-throw-plan.png');
                     $('.scene01 .tips img').attr('src', 'assets/images/scene01-tips.png');
                     $('.scene01 .arrow').attr('src', 'assets/images/scene01-arrow.png');
@@ -1802,16 +1803,10 @@ var app = {
 
 
         var isInited = false;
-        var isArrowShown = false;
         function initVideo2(){
             if (!isInited && video02.currentTime > 0){
                 $(".poster").hide().css({'background-image': 'url("assets/images/video03-poster.png")'});
                 isInited = true;
-            }
-
-            if (!isArrowShown && video02.currentTime > 0.9) {
-                $('.page-arrow').addClass('active');
-                isArrowShown = true;
             }
         }
 
@@ -1819,12 +1814,16 @@ var app = {
         $('.video02').one('ended', function () {
             //  bind start btn for scene03
             $('.video02').one('touchstart', app.startScene03);
+            //  show arrow
+            $('.page-arrow').addClass('active');
         });
     },
 
     startScene03: function () {
         $('.videobox02').addClass('leave');
         $('.scene03').addClass('active');
+
+        //  remove arrow
         $('.page-arrow').removeClass('active');
 
         setTimeout(function () {
