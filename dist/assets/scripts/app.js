@@ -1750,11 +1750,11 @@ var app = {
                 $(".video01")[0].webkitExitFullScreen();
             }, false);
 
-            ('.video02').on("playing", function (){
+            $('.video02').on("playing", function (){
                 $(".video02")[0].webkitExitFullScreen();
             }, false);
 
-            ('.video03').on("playing", function (){
+            $('.video03').on("playing", function (){
                 $(".video03")[0].webkitExitFullScreen();
             }, false);
         }
