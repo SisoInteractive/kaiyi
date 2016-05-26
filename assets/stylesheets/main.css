@@ -17,7 +17,10 @@ body {
   overflow: hidden;
   margin: 0  auto;
   background: #fcfcfc;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
 }
 
 a {
@@ -234,14 +237,16 @@ input {
   bottom: 41.5534%;
   left: 42.1875%;
   overflow: hidden;
-  background: rgba(217, 223, 232, 0.4);
-  border: 8px solid rgba(236, 239, 244, 0.4);
+  background: rgba(217, 223, 232, 0.45);
+  border: 8px solid rgba(236, 239, 244, 0.2);
   border-radius: 100%;
   z-index: 10;
 }
 .scene01 .throw-plain .tips img {
   display: block;
   width: 100%;
+  -webkit-animation: flash 2s infinite linear;
+          animation: flash 2s infinite linear;
 }
 .scene01 .throw-plain .arrow {
   width: 20.3125%;
@@ -290,13 +295,23 @@ input {
   opacity: 0;
 }
 
+@-webkit-keyframes flash {
+  50% {
+    opacity: .85;
+  }
+}
+
+@keyframes flash {
+  50% {
+    opacity: .85;
+  }
+}
 @-webkit-keyframes throwPlain {
   40% {
     -webkit-transform: translate3d(20px, 20px, 0);
             transform: translate3d(20px, 20px, 0);
   }
 }
-
 @keyframes throwPlain {
   40% {
     -webkit-transform: translate3d(20px, 20px, 0);

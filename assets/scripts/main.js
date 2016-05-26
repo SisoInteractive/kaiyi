@@ -98,7 +98,6 @@ var app = {
         //  start button
         function startProcess () {
             $('.loading-plain').one('touchstart', function () {
-                $('.loading').addClass('leave');
 
                 //  init video01
                 $('.poster').addClass('show');
@@ -110,20 +109,18 @@ var app = {
                 //  play bgm
                 $('#audio')[0].play();
 
-                //  go to Create process
-                setTimeout(function () {
-                    $('.video01')[0].pause();
-
-                    setTimeout(function () {
-                        $('.loading').remove();
-                        app.create();
-                    }, 500)
-                }, 200);
-
                 function initVideo1(){
                     if (video01.currentTime > 0){
+                        $('.loading').addClass('leave');
+                        $('.video01')[0].pause();
                         $(".poster").hide().css({'background-image': 'url("assets/images/video02-poster.png")'});
                         video01.removeEventListener("timeupdate", initVideo1);
+
+                        //  go to Create process
+                        setTimeout(function () {
+                            $('.loading').remove();
+                            app.create();
+                        }, 700);
                     }
                 }
             });
@@ -164,21 +161,17 @@ var app = {
         //video02.playbackRate = 4;
         video02.play();
 
-        setTimeout(function () {
-            $('.video02')[0].pause();
-
-            setTimeout(function () {
-                $('.video02')[0].play();
-            }, 100)
-        }, 200);
-
-
         var isInited = false;
         var isArrowShown = false;
         function initVideo2(){
             if (!isInited && video02.currentTime > 0){
+                $('.video02')[0].pause();
                 $(".poster").hide().css({'background-image': 'url("assets/images/video03-poster.png")'});
                 isInited = true;
+
+                setTimeout(function () {
+                    $('.video02')[0].play();
+                }, 300);
             }
 
             if (!isArrowShown && video02.currentTime > 18) {
@@ -234,21 +227,18 @@ var app = {
             $('.poster').show();
             video03.play();
 
-            setTimeout(function () {
-                $('.video03')[0].pause();
-
-                // main
-                setTimeout(function () {
-                    $('.videobox02, .scene03').remove();
-                    $('.video03')[0].play();
-                }, 100)
-            }, 200);
-
             function initVideo3(){
                 if (video03.currentTime > 0){
+                    $('.video03')[0].pause();
                     $(".poster").hide();
                     $('.bg').css({'background-image': 'url("assets/images/bg-countdown.jpg")'});
                     video03.removeEventListener("timeupdate", initVideo3);
+
+                    // main
+                    setTimeout(function () {
+                        $('.videobox02, .scene03').remove();
+                        $('.video03')[0].play();
+                    }, 100)
                 }
             }
 

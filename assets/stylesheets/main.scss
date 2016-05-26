@@ -19,7 +19,9 @@ body {
   overflow: hidden;
   margin: 0  auto;
   background: #fcfcfc;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
 }
 
 a {
@@ -267,14 +269,16 @@ $pageHeight: 1030;
       @include calBottom(428);
       @include calLeft(270);
       overflow: hidden;
-      background: rgba(217, 223, 232, .4);
-      border: 8px solid rgba(236, 239, 244, .4);
+      background: rgba(217, 223, 232, .45);
+      border: 8px solid rgba(236, 239, 244, .2);
       border-radius: 100%;
       z-index: 10;
 
       img {
         display: block;
         width: 100%;
+
+        animation: flash 2s infinite linear;
       }
     }
 
@@ -329,6 +333,12 @@ $pageHeight: 1030;
 
   &.leave {
     opacity: 0;
+  }
+}
+
+@keyframes flash {
+  50% {
+    opacity: .85;
   }
 }
 
