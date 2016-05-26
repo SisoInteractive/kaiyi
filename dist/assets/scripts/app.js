@@ -1673,16 +1673,6 @@ document.addEventListener('touchmove', function (e) {
 
 var app = {
     preload: function () {
-        //  page response
-        window.onload = window.onresize = function(){
-            pageResponse({
-                selectors : '.content',     //模块选择器，使用querySelectorAll的方法
-                mode : 'contain',     // auto || contain || cover ，默认模式为auto
-                width : '320',      //输入页面的宽度，只支持输入数值，默认宽度为320px
-                height : '515'      //输入页面的高度，只支持输入数值，默认高度为504px
-            })
-        };
-
         //  preload images
         var images = [
             'bg-paper.png',
@@ -1722,6 +1712,20 @@ var app = {
         function checkProcess () {
             $('.loading-text  .counter').text(Math.floor(loaded / amount * 100) + '%');
             return loaded / amount == 1;
+        }
+
+        $(window).on('load', resetVideoSize).on('resize', resetVideoSize);
+
+        function resetVideoSize () {
+            //  init video size
+            var cw = document.documentElement.clientWidth;
+            var ch = document.documentElement.clientHeight;
+
+            $('.videobox video').each(function () {
+                $(this).css({minHeight: ch, maxHeight: ch});
+            });
+
+            $('body').css({"width": Math.floor((ch*0.6213592233009708))});
         }
 
         //  start button
@@ -1876,6 +1880,7 @@ var app = {
             function initVideo3(){
                 if (video03.currentTime > 0){
                     $(".poster").hide();
+                    $('.bg').css({'background-image': 'url("assets/images/bg-countdown.jpg")'});
                     video03.removeEventListener("timeupdate", initVideo3);
                 }
             }
@@ -1883,7 +1888,6 @@ var app = {
             //  event when video02 end
             $('.video03').one('ended', function () {
                 $('.videobox03').remove();
-                $('.bg').css({'background-image': 'url("assets/images/bg-countdown.jpg")'});
 
                 function countdown(endDate)
                 {
@@ -1913,6 +1917,8 @@ var app = {
           case 3:
               $('.scene03').css({zIndex: 1000}).addClass('active');
               break;
+          case 'video01':
+              $('.videobox01').addClass('active').css({zIndex: 10000});
       }
     },
 
@@ -1925,5 +1931,6 @@ var app = {
 $(function (){
     // init app
     app.start();
+    //app.debug('video01');
     console.log('app started success...');
 });

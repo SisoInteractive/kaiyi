@@ -67,10 +67,20 @@
 <div class="page-arrow"></div>
 <div class="page-arrow page-arrow-below"></div>
 
+<script>
+    //  init content size
+    var query = function(selector){
+        return document.querySelector(selector);
+    };
+
+    var cw = document.documentElement.clientWidth;
+    var ch = document.documentElement.clientHeight;
+    query('body').style = "width:" + Math.floor((ch*0.6213592233009708)) + 'px'
+</script>
+
 <audio id="audio" src="http://7xp6iq.com1.z0.glb.clouddn.com/audio.mp3" loop></audio>
 <!-- inject:js -->
 <!-- page -->
-<script src="assets/scripts/pageResponse.js"></script>
 <script src="assets/scripts/zepto.js"></script>
 <script src="assets/scripts/main.js"></script>
 <!-- endinject -->
