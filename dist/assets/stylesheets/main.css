@@ -50,7 +50,7 @@ input {
   position: absolute;
   overflow: hidden;
   top: 0;
-  background: url("../images/bg-paper.jpg") no-repeat center center;
+  background: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-paper.jpg") no-repeat center center;
   background-size: cover;
 }
 
@@ -149,7 +149,7 @@ input {
   bottom: 0;
   top: 0;
   width: 100%;
-  background: url("../images/bg-paper.jpg") no-repeat 50% 50%;
+  background: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-paper.jpg") no-repeat 50% 50%;
   background-size: cover;
 }
 .poster.show {
@@ -204,7 +204,7 @@ input {
 }
 
 .bg {
-  display: none;
+  opacity: 0;
   left: 0;
   right: 0;
   bottom: 0;
@@ -213,7 +213,12 @@ input {
   background-size: cover;
 }
 .bg.active {
-  display: block;
+  opacity: 1;
+}
+.bg.prepare {
+  -webkit-transition: all .6s;
+          transition: all .6s;
+  z-index: 100;
 }
 
 .scene01 {
@@ -274,11 +279,13 @@ input {
   color: #393156;
   background: none;
   border: none;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .scene03 .phone {
   color: #393156;
   background: none;
   border: none;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .scene03 .message {
   display: none;
@@ -287,6 +294,7 @@ input {
   color: #393156;
   background: none;
   border: none;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .scene03 .submit {
   width: 26.5625%;
@@ -302,10 +310,10 @@ input {
           transform: translate3d(0, -100%, 0);
 }
 .scene03.reporter {
-  background-image: url("../images/bg-scene03-reporter.jpg");
+  background-image: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03-reporter.jpg");
 }
 .scene03.person {
-  background-image: url("../images/bg-scene03.jpg");
+  background-image: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03.jpg");
 }
 
 .counter {
@@ -315,6 +323,9 @@ input {
   top: 0;
   background: no-repeat center center;
   background-size: cover;
+  opacity: 0;
+  -webkit-transition: all .6s;
+          transition: all .6s;
 }
 .counter span {
   color: #7a6653;
@@ -322,19 +333,20 @@ input {
   text-align: center;
 }
 .counter .day {
-  font-weight: bold;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .counter .hours {
-  font-weight: bold;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .counter .minus {
-  font-weight: bold;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .counter .seconds {
-  font-weight: bold;
+  font-family: "microsoft yahei", Helvetica, sans-serif;
 }
 .counter.active {
   z-index: 1000;
+  opacity: 1;
 }
 
 @-webkit-keyframes pulse {
