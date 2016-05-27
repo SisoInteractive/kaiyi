@@ -32,7 +32,7 @@ var app = {
             'bg-paper.jpg',
             'bg-scene01.jpg',
             'bg-countdown.jpg',
-            'video02-poster.jpg',
+            'new03-video02-poster.jpg',
             'video03-poster.jpg',
             'scene01-arrow.png',
             'scene01-throw-plan.png',
@@ -108,7 +108,7 @@ var app = {
                     if (video01.currentTime > 0){
                         $('.loading').addClass('leave');
                         $('.video01')[0].pause();
-                        $(".poster").hide().css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-video02-poster.jpg")'});
+                        $(".poster").hide().css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-new03-video02-poster.jpg")'});
                         video01.removeEventListener("timeupdate", initVideo1);
 
                         //  go to Create process
@@ -166,7 +166,6 @@ var app = {
 
                         //  pause bgm
                         $('.audio01')[0].pause();
-                        $('.audio01')[0].currentTime = 0;
                     });
                 }
             }, 900)
@@ -179,6 +178,7 @@ var app = {
     isStartScene02: false,
 
     startScene02: function () {
+        $('.audio01')[0].remove();
         $('.audio02')[0].play();
 
         //  init video02
@@ -191,7 +191,6 @@ var app = {
         video02.play();
 
         var isInited = false;
-        var isArrowShown = false;
         function initVideo2(){
             if (!isInited && video02.currentTime > 0){
                 $('.video02')[0].pause();
@@ -200,7 +199,12 @@ var app = {
 
                 setTimeout(function () {
                     $('.video02')[0].play();
-                }, 300);
+                }, 200);
+            }
+
+            if (!isInited && video02.currentTime > 19) {
+                //  show arrow
+                $('.page-arrow').addClass('active');
             }
         }
 
@@ -208,7 +212,6 @@ var app = {
         $('.video02').one('ended', function () {
             //  show arrow
             $('.page-arrow').addClass('active');
-            isArrowShown = true;
 
             //  bind start btn for scene03
             $('.videobox02').one('touchstart', app.startScene03);
@@ -230,68 +233,6 @@ var app = {
         initUI();
         window.addEventListener('resize', initUI);
 
-        function initUI () {
-            var heightRate = $('body')[0].clientHeight / 603;
-            var widthRate = $('body')[0].clientWidth / 375;
-
-            if (app.version == "reporter") {
-                $('.message').show().css({
-                    width: 522/2 * widthRate + 'px',
-                    height: 195/2 * heightRate + 'px',
-                    lineHeight: 42/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
-                    marginTop: 255/2 * heightRate + 'px',
-                    marginLeft: 112/2 * widthRate + 'px'
-                });
-
-                $('.name').css({
-                    width: 260/2 * widthRate + 'px',
-                    height: 87/2 * heightRate + 'px',
-                    lineHeight: 87/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
-                    marginTop: 90/2 * heightRate + 'px',
-                    marginLeft: 315/2 * widthRate + 'px'
-                });
-
-                $('.phone').css({
-                    width: 244/2 * widthRate + 'px',
-                    height: 87/2 * heightRate + 'px',
-                    lineHeight: 87/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
-                    marginLeft: 315/2 * widthRate + 'px'
-                });
-
-            }
-            //  TODO: needs to rewrite below UI position
-            else if (app.version == "person") {
-                $('.name').css({
-                    width: 244/2 * widthRate + 'px',
-                    height: 42/2 * heightRate + 'px',
-                    lineHeight: 42/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
-                    marginTop: 107/2 * heightRate + 'px',
-                    marginLeft: 300/2 * widthRate + 'px'
-                });
-
-                $('.phone').css({
-                    width: 244/2 * widthRate + 'px',
-                    height: 42/2 * heightRate + 'px',
-                    lineHeight: 42/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
-                    marginLeft: 300/2 * widthRate + 'px'
-                });
-            }
-
-            $('.submit').css({
-                width: 255/2 * widthRate + 'px',
-                height: 255/2 * heightRate + 'px',
-                lineHeight: 42/2 * heightRate + 'px',
-                fontSize: 28/2 * heightRate + 'px',
-                bottom: 118/2 * heightRate + 'px',
-                left: 227/2 * widthRate + 'px'
-            });
-        }
-
         $(".name").on('keyup', function (e) {
             if (e.keyCode == 13) $('.phone').focus();
         });
@@ -304,8 +245,8 @@ var app = {
             //  pause bgm
             $('.audio02')[0].pause();
 
-            //  play bgm01
-            $('.audio01')[0].play();
+            //  play bgm03
+            $('.audio03')[0].play();
 
             //  verify data
             var nameReg = /[\u4e00-\u9fa5a-zA-Z ]+/;
@@ -418,6 +359,69 @@ var app = {
                 }
             });
         });
+
+        function initUI () {
+            var heightRate = $('body')[0].clientHeight / 603;
+            var widthRate = $('body')[0].clientWidth / 375;
+
+            if (app.version == "reporter") {
+                $('.message').show().css({
+                    width: 522/2 * widthRate + 'px',
+                    height: 195/2 * heightRate + 'px',
+                    lineHeight: 42/2 * heightRate + 'px',
+                    fontSize: 28/2 * heightRate + 'px',
+                    marginTop: 255/2 * heightRate + 'px',
+                    marginLeft: 112/2 * widthRate + 'px'
+                });
+
+                $('.name').css({
+                    width: 260/2 * widthRate + 'px',
+                    height: 87/2 * heightRate + 'px',
+                    lineHeight: 87/2 * heightRate + 'px',
+                    fontSize: 28/2 * heightRate + 'px',
+                    marginTop: 90/2 * heightRate + 'px',
+                    marginLeft: 315/2 * widthRate + 'px'
+                });
+
+                $('.phone').css({
+                    width: 244/2 * widthRate + 'px',
+                    height: 87/2 * heightRate + 'px',
+                    lineHeight: 87/2 * heightRate + 'px',
+                    fontSize: 28/2 * heightRate + 'px',
+                    marginLeft: 315/2 * widthRate + 'px'
+                });
+
+            }
+            //  TODO: needs to rewrite below UI position
+            else if (app.version == "person") {
+                $('.name').css({
+                    width: 244/2 * widthRate + 'px',
+                    height: 42/2 * heightRate + 'px',
+                    lineHeight: 42/2 * heightRate + 'px',
+                    fontSize: 28/2 * heightRate + 'px',
+                    marginTop: 107/2 * heightRate + 'px',
+                    marginLeft: 300/2 * widthRate + 'px'
+                });
+
+                $('.phone').css({
+                    width: 244/2 * widthRate + 'px',
+                    height: 42/2 * heightRate + 'px',
+                    lineHeight: 42/2 * heightRate + 'px',
+                    fontSize: 28/2 * heightRate + 'px',
+                    marginLeft: 300/2 * widthRate + 'px'
+                });
+            }
+
+            $('.submit').css({
+                width: 255/2 * widthRate + 'px',
+                height: 255/2 * heightRate + 'px',
+                lineHeight: 42/2 * heightRate + 'px',
+                fontSize: 28/2 * heightRate + 'px',
+                bottom: 118/2 * heightRate + 'px',
+                left: 227/2 * widthRate + 'px'
+            });
+        }
+
     },
 
     debug: function (index) {
