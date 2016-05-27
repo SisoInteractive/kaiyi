@@ -15,7 +15,7 @@
 
     <!-- weixin share thumb -->
     <div id='wx_pic' style='margin:0 auto;display:none;'>
-        <img src='assets/images/share-icon.jpg' />
+        <img src='http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-share-icon.jpg' />
     </div>
     <!-- end weixin share thumb -->
 </head>
@@ -82,5 +82,45 @@
 <!-- inject:js -->
 <script src="assets/scripts/app.min.js"></script>
 <!-- endinject -->
+
+<!-- wechat share-->
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    wx.config({
+        debug: false,
+        appId: 'wxb66fe8e6ed2e6e02',
+        timestamp: '1464377565',
+        nonceStr: 'S3nJVMTnAZUs06cE',
+        signature: 'cb75b3703de53950895b4a7f5006f410f8b45b38',
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline']
+    });
+
+    /** initia wechat config as default */
+        // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+        // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareTimeline({
+        title: '只要坚持，梦想总是可以实现的', // 分享标题
+        link: 'http://www.sisobrand.com/h5/kaiyi-reporter', // 分享链接
+        imgUrl: 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-share-icon.jpg', // 分享图标
+        success: function () {
+        },
+        cancel: function () {
+        }
+    });
+
+    // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+    wx.onMenuShareAppMessage({
+        title: '只要坚持，梦想总是可以实现的', // 分享标题
+        desc: '', // 分享描述
+        link: 'http://www.sisobrand.com/h5/kaiyi-reporter', // 分享链接
+        imgUrl: 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-share-icon.jpg', // 分享图标
+        type: '', // 分享类型,music、video或link，不填默认为link
+        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+        success: function () {
+        },
+        cancel: function () {
+        }
+    });
+</script>
 </body>
 </html>
