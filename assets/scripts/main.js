@@ -61,7 +61,6 @@ var app = {
                         $('.throw-plain .tips img').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-tips.png');
                     } else {
                         $('.throw-plain .tips img').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-tips-android.png');
-                        $('.video02').one('touchstart', app.startScene03);
                     }
                 }
             }
@@ -153,19 +152,13 @@ var app = {
                         app.isStartScene02 = true;
                         window.removeEventListener('shake', shakeHandler, false);
                     }
-
-                    $('.throw-plain').one('touchstart', function () {
-                        !app.isStartScene02 && app.startScene02();
-                        app.isStartScene02 = true;
-                    });
                 } else {
                     // bind start btn for scene02
                     $('.throw-plain').one('touchstart', function () {
+                        //  pause bgm
+                        $('.audio01').remove();
                         !app.isStartScene02 && app.startScene02();
                         app.isStartScene02 = true;
-
-                        //  pause bgm
-                        $('.audio01')[0].pause();
                     });
                 }
             }, 900)
@@ -178,7 +171,6 @@ var app = {
     isStartScene02: false,
 
     startScene02: function () {
-        $('.audio01')[0].remove();
         $('.audio02')[0].play();
 
         //  init video02
@@ -209,7 +201,7 @@ var app = {
         }
 
         //  call when video01 end
-        $('.video02').one('ended', function () {
+        $('.video02').on('ended', function () {
             //  show arrow
             $('.page-arrow').addClass('active');
 
@@ -242,8 +234,10 @@ var app = {
         });
 
         $('.submit').on('touchstart', function () {
+            $('.submit').focus();
+
             //  pause bgm
-            $('.audio02')[0].pause();
+            $('.audio02').remove();
 
             //  play bgm03
             $('.audio03')[0].play();
@@ -577,3 +571,4 @@ $(function (){
     //app.debug(3);
     console.log('app started success...');
 });
+

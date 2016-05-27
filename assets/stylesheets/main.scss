@@ -12,16 +12,17 @@
 html {
   height: 100%;
   font-family: "microsoft yahei", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background: #f0f0f0;
 }
 
 body {
   height: 100%;
   overflow: hidden;
   margin: 0  auto;
-  background: #f3f3f3;
   position: absolute;
   left: 50%;
-  transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0) scale(1.04);
+  transform-origin: center center;
 }
 
 a {
@@ -102,7 +103,10 @@ $pageHeight: 1030;
   @include calTop(300);
   @include calLeft(225);
   @include calWidth(190);
+  @include calHeight(190);
   animation: throwPlainSmall 4s infinite linear;
+  background: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-loading-img.png") no-repeat center center;
+  background-size: cover;
 }
 
 .loading-text {

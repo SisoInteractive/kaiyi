@@ -10,17 +10,20 @@
 html {
   height: 100%;
   font-family: "microsoft yahei", Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background: #f0f0f0;
 }
 
 body {
   height: 100%;
   overflow: hidden;
   margin: 0  auto;
-  background: #f3f3f3;
   position: absolute;
   left: 50%;
-  -webkit-transform: translate3d(-50%, 0, 0);
-          transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0) scale(1.04);
+          transform: translate3d(-50%, 0, 0) scale(1.04);
+  -webkit-transform-origin: center center;
+      -ms-transform-origin: center center;
+          transform-origin: center center;
 }
 
 a {
@@ -71,8 +74,11 @@ input {
   top: 29.12621%;
   left: 35.15625%;
   width: 29.6875%;
+  height: 18.4466%;
   -webkit-animation: throwPlainSmall 4s infinite linear;
           animation: throwPlainSmall 4s infinite linear;
+  background: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-loading-img.png") no-repeat center center;
+  background-size: cover;
 }
 
 .loading-text {
