@@ -156,7 +156,10 @@ var app = {
                     // bind start btn for scene02
                     $('.throw-plain').one('touchstart', function () {
                         //  pause bgm
-                        $('.audio01').remove();
+                        $('.audio01')[0].pause();
+                        setTimeout(function () {
+                            $('.audio01').remove();
+                        }, 200);
                         !app.isStartScene02 && app.startScene02();
                         app.isStartScene02 = true;
                     });
@@ -237,7 +240,10 @@ var app = {
             $('.submit').focus();
 
             //  pause bgm
-            $('.audio02').remove();
+            $('.audio02')[0].pause();
+            setTimeout(function () {
+                $('.audio02').remove();
+            }, 200);
 
             //  play bgm03
             $('.audio03')[0].play();
