@@ -1786,7 +1786,7 @@ var app = {
         });
 
         function checkProcess () {
-            $('.loading-text  .counter').text(Math.floor(loaded / amount * 100) + '%');
+            $('.loading-counter').text(Math.floor(loaded / amount * 100) + '%');
             return loaded / amount == 1;
         }
 
@@ -1806,7 +1806,7 @@ var app = {
 
         //  start button
         function prestartProcess () {
-            $('.loading-text .counter').text('点击小飞机');
+            $('.loading-counter').text('点击小飞机');
             $('.loading-text .status').text('Finished');
 
             $('.loading-plain').one('touchstart', function () {
@@ -1819,7 +1819,7 @@ var app = {
                 video01.play();
 
                 //  play bgm
-                $('#audio')[0].play();
+                $('.audio01')[0].play();
 
                 function initVideo1(){
                     if (video01.currentTime > 0){
@@ -1880,6 +1880,10 @@ var app = {
                     $('.throw-plain').one('touchstart', function () {
                         !app.isStartScene02 && app.startScene02();
                         app.isStartScene02 = true;
+
+                        //  pause bgm
+                        $('.audio01')[0].pause();
+                        $('.audio01')[0].currentTime = 0;
                     });
                 }
             }, 900)
@@ -1892,6 +1896,8 @@ var app = {
     isStartScene02: false,
 
     startScene02: function () {
+        $('.audio02')[0].play();
+
         //  init video02
         $('.poster').show();
         $('.videobox02').addClass('active');
@@ -2003,7 +2009,21 @@ var app = {
             });
         }
 
+        $(".name").on('keyup', function (e) {
+            if (e.keyCode == 13) $('.phone').focus();
+        });
+
+        $(".phone").on('keyup', function (e) {
+            if (e.keyCode == 13) $('.submit').focus();
+        });
+
         $('.submit').on('touchstart', function () {
+            //  pause bgm
+            $('.audio02')[0].pause();
+
+            //  play bgm01
+            $('.audio01')[0].play();
+
             //  verify data
             var nameReg = /[\u4e00-\u9fa5a-zA-Z ]+/;
             var phoneReg = /.{6,}/;
@@ -2048,6 +2068,7 @@ var app = {
             function initVideo3(){
                 if (video03.currentTime > 0){
                     $('.video03')[0].pause();
+                    $('.audio02').remove();
                     $(".poster").hide();
                     $('.bg').removeClass('active').css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-countdown.jpg")'});
                     video03.removeEventListener("timeupdate", initVideo3);
@@ -2117,28 +2138,103 @@ var app = {
     },
 
     debug: function (index) {
-      switch (index) {
+        var cw = document.documentElement.clientWidth;
+        var ch = document.documentElement.clientHeight;
+
+        $('.videobox video').each(function () {
+            $(this).css({minHeight: ch+1, maxHeight: ch+1});
+        });
+
+        $('body').css({"width": Math.floor((ch*0.6213592233009708))});
+
+        switch (index) {
           case 1:
               $('.scene01').css({zIndex: 1000}).addClass('active');
               break;
           case 2:
               break;
           case 3:
+              $('.loading').remove();
               $('.scene03').css({zIndex: 1000}).addClass('active');
+
+              //  init form
+              initUI();
+              window.addEventListener('resize', initUI);
+
+              function initUI () {
+                  var heightRate = $('body')[0].clientHeight / 603;
+                  var widthRate = $('body')[0].clientWidth / 375;
+
+                  if (app.version == "reporter") {
+                      $('.message').show().css({
+                          width: 522/2 * widthRate + 'px',
+                          height: 195/2 * heightRate + 'px',
+                          lineHeight: 42/2 * heightRate + 'px',
+                          fontSize: 28/2 * heightRate + 'px',
+                          marginTop: 255/2 * heightRate + 'px',
+                          marginLeft: 112/2 * widthRate + 'px'
+                      });
+
+                      $('.name').css({
+                          width: 260/2 * widthRate + 'px',
+                          height: 87/2 * heightRate + 'px',
+                          lineHeight: 87/2 * heightRate + 'px',
+                          fontSize: 28/2 * heightRate + 'px',
+                          marginTop: 90/2 * heightRate + 'px',
+                          marginLeft: 315/2 * widthRate + 'px'
+                      });
+
+                      $('.phone').css({
+                          width: 244/2 * widthRate + 'px',
+                          height: 87/2 * heightRate + 'px',
+                          lineHeight: 87/2 * heightRate + 'px',
+                          fontSize: 28/2 * heightRate + 'px',
+                          marginLeft: 315/2 * widthRate + 'px'
+                      });
+
+                  }
+                  //  TODO: needs to rewrite below UI position
+                  else if (app.version == "person") {
+                      $('.name').css({
+                          width: 244/2 * widthRate + 'px',
+                          height: 42/2 * heightRate + 'px',
+                          lineHeight: 42/2 * heightRate + 'px',
+                          fontSize: 28/2 * heightRate + 'px',
+                          marginTop: 107/2 * heightRate + 'px',
+                          marginLeft: 300/2 * widthRate + 'px'
+                      });
+
+                      $('.phone').css({
+                          width: 244/2 * widthRate + 'px',
+                          height: 42/2 * heightRate + 'px',
+                          lineHeight: 42/2 * heightRate + 'px',
+                          fontSize: 28/2 * heightRate + 'px',
+                          marginLeft: 300/2 * widthRate + 'px'
+                      });
+                  }
+
+                  $('.submit').css({
+                      width: 255/2 * widthRate + 'px',
+                      height: 255/2 * heightRate + 'px',
+                      lineHeight: 42/2 * heightRate + 'px',
+                      fontSize: 28/2 * heightRate + 'px',
+                      bottom: 118/2 * heightRate + 'px',
+                      left: 227/2 * widthRate + 'px'
+                  });
+              }
+
+              $(".name").on('keyup', function (e) {
+                  if (e.keyCode == 13) $('.phone').focus();
+              });
+
+              $(".phone").on('keyup', function (e) {
+                  if (e.keyCode == 13) $('.submit').focus();
+              });
               break;
           case 'video01':
               $('.videobox01').addClass('active').css({zIndex: 10000});
               break;
           case 'counter':
-              var cw = document.documentElement.clientWidth;
-              var ch = document.documentElement.clientHeight;
-
-              $('.videobox video').each(function () {
-                  $(this).css({minHeight: ch+1, maxHeight: ch+1});
-              });
-
-              $('body').css({"width": Math.floor((ch*0.6213592233009708))});
-
               $('.counter').css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-countdown.jpg")'});
               var day = $('.day');
               var hours = $('.hours');
@@ -2191,5 +2287,6 @@ $(function (){
     // init app
     app.start();
     //app.debug('counter');
+    //app.debug(3);
     console.log('app started success...');
 });
