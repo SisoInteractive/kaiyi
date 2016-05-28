@@ -211,7 +211,7 @@ var app = {
         $('.scene03').addClass('active');
 
         //  remove arrow
-        $('.page-arrow').removeClass('active');
+        $('.page-arrow').remove();
 
         setTimeout(function () {
             $('.videobox02').remove();
