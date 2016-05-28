@@ -140,7 +140,7 @@ var app = {
                 //  other os, click button to throw plain
                 if (app.browser.versions.ios) {
                     var myShakeEvent = new Shake({
-                        threshold: 7, // optional shake strength threshold
+                        threshold: 5, // optional shake strength threshold
                         timeout: 700 // optional, determines the frequency of event generation
                     });
                     myShakeEvent.start();
@@ -148,6 +148,8 @@ var app = {
                     window.addEventListener('shake', shakeHandler, false);
 
                     function shakeHandler () {
+                        //  pause bgm
+                        $('.audio01').remove();
                         !app.isStartScene02 && app.startScene02();
                         app.isStartScene02 = true;
                         window.removeEventListener('shake', shakeHandler, false);
@@ -156,10 +158,7 @@ var app = {
                     // bind start btn for scene02
                     $('.throw-plain').one('touchstart', function () {
                         //  pause bgm
-                        $('.audio01')[0].pause();
-                        setTimeout(function () {
-                            $('.audio01').remove();
-                        }, 200);
+                        $('.audio01').remove();
                         !app.isStartScene02 && app.startScene02();
                         app.isStartScene02 = true;
                     });
@@ -197,20 +196,13 @@ var app = {
                 }, 200);
             }
 
-            if (!isInited && video02.currentTime > 19) {
+            if (video02.currentTime > 19) {
                 //  show arrow
                 $('.page-arrow').addClass('active');
+                //  bind start btn for scene03
+                $('.videobox02').one('touchstart', app.startScene03);
             }
         }
-
-        //  call when video01 end
-        $('.video02').on('ended', function () {
-            //  show arrow
-            $('.page-arrow').addClass('active');
-
-            //  bind start btn for scene03
-            $('.videobox02').one('touchstart', app.startScene03);
-        });
     },
 
     startScene03: function () {
@@ -240,10 +232,7 @@ var app = {
             $('.submit').focus();
 
             //  pause bgm
-            $('.audio02')[0].pause();
-            setTimeout(function () {
-                $('.audio02').remove();
-            }, 200);
+            $('.audio02')[0].remove();
 
             //  play bgm03
             $('.audio03')[0].play();
@@ -264,21 +253,37 @@ var app = {
 
             //  send data to server
             if (app.version == 'reporter') {
-                $.post('http://sisobrand.com:1361/reporter', {
+                $.post('http://h5.stardo.com.cn/kaiyi201606/form-media.php?callback?', {
                     message: $('.message').val() || '',
-                    name: $('.name').val() || '',
-                    phone: $('.phone').val() || ''
+                    username: $('.name').val() || '',
+                    telephone: $('.phone').val() || ''
                 }, function (response) {
                     console.log('data send:', response);
                 });
             } else {
-                $.post('http://sisobrand.com:1361/person', {
-                    name: $('.name').val() || '',
-                    phone: $('.phone').val() || ''
+                $.post('http://h5.stardo.com.cn/kaiyi201606/form.php?callback?', {
+                    username: $('.name').val() || '',
+                    telephone: $('.phone').val() || ''
                 }, function (response) {
                     console.log('data send:', response);
                 });
             }
+            //if (app.version == 'reporter') {
+            //    $.post('http://sisobrand.com:1361/reporter', {
+            //        message: $('.message').val() || '',
+            //        name: $('.name').val() || '',
+            //        phone: $('.phone').val() || ''
+            //    }, function (response) {
+            //        console.log('data send:', response);
+            //    });
+            //} else {
+            //    $.post('http://sisobrand.com:1361/person', {
+            //        name: $('.name').val() || '',
+            //        phone: $('.phone').val() || ''
+            //    }, function (response) {
+            //        console.log('data send:', response);
+            //    });
+            //}
 
             //  init video03
             $('.scene03').addClass('leave').css({zIndex: 2000});
