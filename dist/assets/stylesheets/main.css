@@ -315,12 +315,6 @@ input {
   -webkit-transform: translate3d(0, -100%, 0);
           transform: translate3d(0, -100%, 0);
 }
-.scene03.reporter {
-  background-image: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03-reporter.jpg");
-}
-.scene03.person {
-  background-image: url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03.jpg");
-}
 
 .counter {
   left: 0;

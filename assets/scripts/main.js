@@ -9,6 +9,7 @@ document.addEventListener('touchmove', function (e) {
 
 var app = {
     version: 'reporter',
+    //version: 'person',
 
     browser: {
         versions: function(){
@@ -56,7 +57,7 @@ var app = {
                     $('.bg').css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene01.jpg")'});
                     $('.scene01 .plain').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-throw-plan.png');
                     $('.scene01 .arrow').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-arrow.png');
-                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (app.version=="reporter"? "-reporter": "") + '.jpg")'});
+                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (app.version=="reporter"? "-reporter": "-person") + '.jpg")'});
                     if (app.browser.versions.ios) {
                         $('.throw-plain .tips img').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-tips.png');
                     } else {
@@ -397,23 +398,23 @@ var app = {
                 });
 
             }
-            //  TODO: needs to rewrite below UI position
+
             else if (app.version == "person") {
                 $('.name').css({
-                    width: 244/2 * widthRate + 'px',
-                    height: 42/2 * heightRate + 'px',
-                    lineHeight: 42/2 * heightRate + 'px',
+                    width: 214/2 * widthRate + 'px',
+                    height: 57/2 * heightRate + 'px',
+                    lineHeight: 57/2 * heightRate + 'px',
                     fontSize: 28/2 * heightRate + 'px',
-                    marginTop: 107/2 * heightRate + 'px',
-                    marginLeft: 300/2 * widthRate + 'px'
+                    marginTop: 318/2 * heightRate + 'px',
+                    marginLeft: 326/2 * widthRate + 'px'
                 });
 
                 $('.phone').css({
-                    width: 244/2 * widthRate + 'px',
-                    height: 42/2 * heightRate + 'px',
-                    lineHeight: 42/2 * heightRate + 'px',
+                    width: 214/2 * widthRate + 'px',
+                    height: 57/2 * heightRate + 'px',
+                    lineHeight: 57/2 * heightRate + 'px',
                     fontSize: 28/2 * heightRate + 'px',
-                    marginLeft: 300/2 * widthRate + 'px'
+                    marginLeft: 326/2 * widthRate + 'px'
                 });
             }
 
@@ -488,20 +489,20 @@ var app = {
                   //  TODO: needs to rewrite below UI position
                   else if (app.version == "person") {
                       $('.name').css({
-                          width: 244/2 * widthRate + 'px',
-                          height: 42/2 * heightRate + 'px',
-                          lineHeight: 42/2 * heightRate + 'px',
+                          width: 214/2 * widthRate + 'px',
+                          height: 57/2 * heightRate + 'px',
+                          lineHeight: 57/2 * heightRate + 'px',
                           fontSize: 28/2 * heightRate + 'px',
-                          marginTop: 107/2 * heightRate + 'px',
-                          marginLeft: 300/2 * widthRate + 'px'
+                          marginTop: 318/2 * heightRate + 'px',
+                          marginLeft: 326/2 * widthRate + 'px'
                       });
 
                       $('.phone').css({
-                          width: 244/2 * widthRate + 'px',
-                          height: 42/2 * heightRate + 'px',
-                          lineHeight: 42/2 * heightRate + 'px',
+                          width: 214/2 * widthRate + 'px',
+                          height: 57/2 * heightRate + 'px',
+                          lineHeight: 57/2 * heightRate + 'px',
                           fontSize: 28/2 * heightRate + 'px',
-                          marginLeft: 300/2 * widthRate + 'px'
+                          marginLeft: 326/2 * widthRate + 'px'
                       });
                   }
 
