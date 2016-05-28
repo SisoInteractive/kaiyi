@@ -14,6 +14,30 @@ $signPackage = $jssdk->GetSignPackage();
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <title>只要坚持，梦想总是可以实现的</title>
 
+    <script>
+        var check = {
+            browser: {
+                versions: function(){
+                    var u = navigator.userAgent, app = navigator.appVersion;
+                    return {
+                        webKit: u.indexOf('AppleWebKit') > -1,
+                        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+                        weixin: u.indexOf('MicroMessenger') > -1,
+                        txnews: u.indexOf('qqnews') > -1,
+                        sinawb: u.indexOf('weibo') > -1,
+                        mqq   : u.indexOf('QQ') > -1
+                    };
+                }(),
+                language:(navigator.browserLanguage || navigator.language).toLowerCase()
+            }
+        };
+
+        if (!check.browser.versions.ios) {
+            location = 'http://h5.stardo.com.cn/kaiyi201606/';
+        }
+    </script>
+
     <!-- inject:css -->
     <link rel="stylesheet" href="assets/stylesheets/main.css"/>
     <!-- endinject -->
