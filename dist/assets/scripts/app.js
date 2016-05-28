@@ -1950,7 +1950,7 @@ var app = {
             $('.submit').focus();
 
             //  pause bgm
-            $('.audio02')[0].remove();
+            $('.audio02')[0].pause();
 
             //  play bgm03
             $('.audio03')[0].play();
