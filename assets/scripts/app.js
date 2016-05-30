@@ -2089,7 +2089,7 @@ var app = {
                     width: 522/2 * widthRate + 'px',
                     height: 195/2 * heightRate + 'px',
                     lineHeight: 42/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
+                    fontSize: 24/2 * heightRate + 'px',
                     marginTop: 255/2 * heightRate + 'px',
                     marginLeft: 112/2 * widthRate + 'px'
                 });
@@ -2098,7 +2098,7 @@ var app = {
                     width: 260/2 * widthRate + 'px',
                     height: 87/2 * heightRate + 'px',
                     lineHeight: 87/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
+                    fontSize: 24/2 * heightRate + 'px',
                     marginTop: 90/2 * heightRate + 'px',
                     marginLeft: 315/2 * widthRate + 'px'
                 });
@@ -2107,7 +2107,7 @@ var app = {
                     width: 244/2 * widthRate + 'px',
                     height: 87/2 * heightRate + 'px',
                     lineHeight: 87/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
+                    fontSize: 24/2 * heightRate + 'px',
                     marginLeft: 315/2 * widthRate + 'px'
                 });
 
@@ -2118,7 +2118,7 @@ var app = {
                     width: 214/2 * widthRate + 'px',
                     height: 57/2 * heightRate + 'px',
                     lineHeight: 57/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
+                    fontSize: 24/2 * heightRate + 'px',
                     marginTop: 318/2 * heightRate + 'px',
                     marginLeft: 326/2 * widthRate + 'px'
                 });
@@ -2127,7 +2127,7 @@ var app = {
                     width: 214/2 * widthRate + 'px',
                     height: 57/2 * heightRate + 'px',
                     lineHeight: 57/2 * heightRate + 'px',
-                    fontSize: 28/2 * heightRate + 'px',
+                    fontSize: 24/2 * heightRate + 'px',
                     marginLeft: 326/2 * widthRate + 'px'
                 });
             }
