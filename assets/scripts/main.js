@@ -54,7 +54,7 @@ var app = {
                     $('.bg').css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene01.jpg")'});
                     $('.scene01 .plain').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-throw-plan.png');
                     $('.scene01 .arrow').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-arrow.png');
-                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (environment.version=="reporter"? "-reporter": "-person") + '.jpg")'});
+                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (environment.version=="reporter"? "-reporter": "-person-new") + '.jpg")'});
                     if (app.browser.versions.ios) {
                         $('.throw-plain .tips img').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-tips.png');
                     } else {
