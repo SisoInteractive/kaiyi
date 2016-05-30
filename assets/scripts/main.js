@@ -8,9 +8,6 @@ document.addEventListener('touchmove', function (e) {
 },true);
 
 var app = {
-    version: 'reporter',
-    //version: 'person',
-
     browser: {
         versions: function(){
             var u = navigator.userAgent, app = navigator.appVersion;
@@ -57,7 +54,7 @@ var app = {
                     $('.bg').css({'background-image': 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene01.jpg")'});
                     $('.scene01 .plain').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-throw-plan.png');
                     $('.scene01 .arrow').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-arrow.png');
-                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (app.version=="reporter"? "-reporter": "-person") + '.jpg")'});
+                    $('.scene03').css({backgroundImage: 'url("http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-bg-scene03' + (environment.version=="reporter"? "-reporter": "-person") + '.jpg")'});
                     if (app.browser.versions.ios) {
                         $('.throw-plain .tips img').attr('src', 'http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-scene01-tips.png');
                     } else {
@@ -253,7 +250,7 @@ var app = {
             }
 
             //  send data to server
-            if (app.version == 'reporter') {
+            if (environment.version == 'reporter') {
                 $.post('http://h5.stardo.com.cn/kaiyi201606/form-media.php?callback?', {
                     message: $('.message').val() || '',
                     username: $('.name').val() || '',
@@ -269,7 +266,7 @@ var app = {
                     console.log('data send:', response);
                 });
             }
-            //if (app.version == 'reporter') {
+            //if (environment.version == 'reporter') {
             //    $.post('http://sisobrand.com:1361/reporter', {
             //        message: $('.message').val() || '',
             //        name: $('.name').val() || '',
@@ -370,7 +367,7 @@ var app = {
             var heightRate = $('body')[0].clientHeight / 603;
             var widthRate = $('body')[0].clientWidth / 375;
 
-            if (app.version == "reporter") {
+            if (environment.version == "reporter") {
                 $('.message').show().css({
                     width: 522/2 * widthRate + 'px',
                     height: 195/2 * heightRate + 'px',
@@ -399,7 +396,7 @@ var app = {
 
             }
 
-            else if (app.version == "person") {
+            else if (environment.version == "person") {
                 $('.name').css({
                     width: 214/2 * widthRate + 'px',
                     height: 57/2 * heightRate + 'px',
@@ -458,7 +455,7 @@ var app = {
                   var heightRate = $('body')[0].clientHeight / 603;
                   var widthRate = $('body')[0].clientWidth / 375;
 
-                  if (app.version == "reporter") {
+                  if (environment.version == "reporter") {
                       $('.message').show().css({
                           width: 522/2 * widthRate + 'px',
                           height: 195/2 * heightRate + 'px',
@@ -487,7 +484,7 @@ var app = {
 
                   }
                   //  TODO: needs to rewrite below UI position
-                  else if (app.version == "person") {
+                  else if (environment.version == "person") {
                       $('.name').css({
                           width: 214/2 * widthRate + 'px',
                           height: 57/2 * heightRate + 'px',

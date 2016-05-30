@@ -17,7 +17,7 @@ $signPackage = $jssdk->GetSignPackage();
     <!-- config -->
     <script>
         var environment = {
-            version: 'reporter'
+            version: 'person'
         };
     </script>
     <!-- end config -->
@@ -42,12 +42,12 @@ $signPackage = $jssdk->GetSignPackage();
         };
 
         if (!check.browser.versions.ios) {
-            location = 'http://h5.stardo.com.cn/kaiyi201606/';
+            location = 'http://h5.stardo.com.cn/kaiyip201606/';
         }
     </script>
 
     <!-- inject:css -->
-    <link rel="stylesheet" href="assets/stylesheets/app.min.css">
+    <link rel="stylesheet" href="assets/stylesheets/main.css"/>
     <!-- endinject -->
 
     <!-- weixin share thumb -->
@@ -118,7 +118,10 @@ $signPackage = $jssdk->GetSignPackage();
 <audio class="audio03" src="http://7xp6iq.com1.z0.glb.clouddn.com/kaiyi-new03-audio03.mp3" loop></audio>
 
 <!-- inject:js -->
-<script src="assets/scripts/app.min.js"></script>
+<!-- page -->
+<script src="assets/scripts/shake.js"></script>
+<script src="assets/scripts/zepto.js"></script>
+<script src="assets/scripts/main.js"></script>
 <!-- endinject -->
 
 <!-- wechat share-->
