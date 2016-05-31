@@ -1946,12 +1946,6 @@ var app = {
         $('.submit').on('touchstart', function () {
             $('.submit').focus();
 
-            //  pause bgm
-            $('.audio02')[0].pause();
-
-            //  play bgm03
-            $('.audio03')[0].play();
-
             //  verify data
             var nameReg = /[\u4e00-\u9fa5a-zA-Z ]+/;
             var phoneReg = /.{6,}/;
@@ -1965,6 +1959,12 @@ var app = {
                 $('.phone').focus();
                 return;
             }
+
+            //  pause bgm
+            $('.audio02')[0].pause();
+
+            //  play bgm03
+            $('.audio03')[0].play();
 
             //  send data to server
             if (environment.version == 'reporter') {
