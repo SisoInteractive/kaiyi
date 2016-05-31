@@ -138,7 +138,7 @@ var app = {
                 //  other os, click button to throw plain
                 if (app.browser.versions.ios) {
                     var myShakeEvent = new Shake({
-                        threshold: 5, // optional shake strength threshold
+                        threshold: 6, // optional shake strength threshold
                         timeout: 700 // optional, determines the frequency of event generation
                     });
                     myShakeEvent.start();
